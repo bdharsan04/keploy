@@ -1,5 +1,6 @@
 name: Golang On Docker
-on: [pull_request]
+on: 
+  workflow_dispatch:
 jobs:
   golang_docker:
     runs-on: ubuntu-latest
