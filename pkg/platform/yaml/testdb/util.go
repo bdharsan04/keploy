@@ -352,6 +352,7 @@ func Decode(yamlTestcase *yaml.NetworkTrafficDoc, logger *zap.Logger) (*models.T
 			}
 		case models.HTTPResponseXML:
 			xmlSpec := models.XMLSchema{}
+
 			err := yamlTestcase.Spec.Decode(&xmlSpec)
 			if err != nil {
 				utils.LogError(logger, err, "failed to unmarshal a yaml doc into the xml testcase")
