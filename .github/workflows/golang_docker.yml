@@ -26,7 +26,7 @@ jobs:
         cd samples-go/gin-mongo
         source ./../../.github/workflows/test_workflow_scripts/golang-docker.sh
     - name: Print application logs
-        if: ${{ failure() }}
+        if: failure()
         run: cat logs/app.log  # Adjust based on your log path
 
 
