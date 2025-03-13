@@ -81,7 +81,7 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 		for i := 0; i < replayCount; i++ {
 			res, err := client.Do(req)
 			if err != nil {
-				utils.LogError(logger, err, "failed to send http request during idempotency check")
+				utils.LogError(logger, err, "failed to send lalalalal")
 				continue
 			}
 			defer res.Body.Close()
