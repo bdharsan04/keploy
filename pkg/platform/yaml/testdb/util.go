@@ -71,7 +71,7 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 
 		// Copy original headers
 		for k, v := range tc.HTTPReq.Header {
-			req.Header[k] = []string{v}
+			req.Header.Set(k,v)
 		}
 
 		// Add special header to prevent recording these replay requests
