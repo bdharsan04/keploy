@@ -63,7 +63,7 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 		var client = &http.Client{}
 		replayCount := 5
 
-		req, err := http.NewRequest(string(tc.HTTPReq.Method), tc.HTTPReq.URL, strings.NewReader(tc.HTTPReq.Body))
+		req, err := http.NewRequest(string(tc.HTTPReq.Method), tc.HTTPReq.URL, nil)
 		if err != nil {
 			utils.LogError(logger, err, "failed to create a new http request")
 			return nil, err
