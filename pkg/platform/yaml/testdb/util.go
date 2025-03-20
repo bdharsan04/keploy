@@ -61,7 +61,7 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 	if tc.HTTPReq.Method == http.MethodGet {
 		var responses []map[string][]string
 		var client = &http.Client{}
-		replayCount := 5
+		replayCount := 10
 
 		req, err := http.NewRequest(string(tc.HTTPReq.Method), tc.HTTPReq.URL, strings.NewReader(tc.HTTPReq.Body))
 		if err != nil {
@@ -71,7 +71,7 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 
 		// Copy original headers
 		for k, v := range tc.HTTPReq.Header {
-			req.Header.Set(k,v)
+			req.Header.Set(k, v)
 		}
 
 		// Add special header to prevent recording these replay requests
