@@ -61,6 +61,7 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 		}
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if tc.HTTPReq.Method == http.MethodGet {
 		var responses []map[string][]string
 		var client = &http.Client{}
@@ -91,6 +92,8 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 
 			body, err := io.ReadAll(res.Body)
 =======
+=======
+>>>>>>> 3e93f1e (idempotency check)
 	if slices.Contains(idempotentoperations, string(tc.HTTPReq.Method)) {
 		var responses []map[string][]string
 		client := &http.Client{}
@@ -114,14 +117,21 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 			defer resp.Body.Close()
 
 			body, err := io.ReadAll(resp.Body)
+<<<<<<< HEAD
+>>>>>>> 3e93f1e (idempotency check)
+=======
 >>>>>>> 3e93f1e (idempotency check)
 			if err != nil {
 				utils.LogError(logger, err, "failed to read response body")
 				continue
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			resMap, err := FlattenHTTPResponse(res.Header, string(body))
+=======
+			resMap, err := FlattenHTTPResponse(resp.Header, string(body))
+>>>>>>> 3e93f1e (idempotency check)
 =======
 			resMap, err := FlattenHTTPResponse(resp.Header, string(body))
 >>>>>>> 3e93f1e (idempotency check)
@@ -131,6 +141,7 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 			}
 			responses = append(responses, resMap)
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 		dynamicFields := identifyDynamicFields(responses, m)
@@ -143,6 +154,8 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 			utils.LogError(logger, nil, "GET request failed idempotency check")
 		}
 =======
+=======
+>>>>>>> 3e93f1e (idempotency check)
 		dynamicfield := DynamicFields(responses, m)
 		for field := range dynamicfield {
 			noise[field] = []string{}
@@ -151,6 +164,9 @@ func EncodeTestcase(tc models.TestCase, logger *zap.Logger) (*yaml.NetworkTraffi
 			utils.LogError(logger, nil, "request failed idempotency check")
 		}
 
+<<<<<<< HEAD
+>>>>>>> 3e93f1e (idempotency check)
+=======
 >>>>>>> 3e93f1e (idempotency check)
 	}
 
@@ -436,6 +452,7 @@ func Decode(yamlTestcase *yaml.NetworkTrafficDoc, logger *zap.Logger) (*models.T
 	return &tc, nil
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 // identifyDynamicFields compares each response with its previous response to identify dynamic fields
 func identifyDynamicFields(responses []map[string][]string, m map[string][]string) map[string]bool {
@@ -507,6 +524,8 @@ func validateResponseConsistency(responses []map[string][]string, m map[string][
 	}
 	return true
 =======
+=======
+>>>>>>> 3e93f1e (idempotency check)
 func DynamicFields(responses []map[string][]string, m map[string][]string) map[string]bool {
 	dynamicfields := make(map[string]bool)
 	if len(responses) <= 1 {
@@ -569,5 +588,8 @@ func Verifyresponses(responses []map[string][]string, m map[string][]string, dyn
 	}
 
 	return consistent
+<<<<<<< HEAD
+>>>>>>> 3e93f1e (idempotency check)
+=======
 >>>>>>> 3e93f1e (idempotency check)
 }
